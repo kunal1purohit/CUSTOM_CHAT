@@ -1,0 +1,25 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kunal1purohit/CUSTOM_CHAT.git"
+  },
+  "author": "Kunal Purohit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kunal1purohit/CUSTOM_CHAT/issues"
+  },
+  "homepage": "https://github.com/kunal1purohit/CUSTOM_CHAT#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4"
+  }
+}
