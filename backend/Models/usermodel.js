@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from 'bcryptjs';
 const usermodel = mongoose.Schema(
     {
         name:{type:String,required:true},
@@ -14,5 +15,17 @@ const usermodel = mongoose.Schema(
     }
 
 );
+
+usermodel.methods.matchpass = async function(pass){
+    return await bcrypt.compare(pass,this.password);
+}
+
+usermodel.pre('save',async function(next){
+    if(!this.isModified){
+        next()
+    }
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password,salt);
+})
 
 export const  User = mongoose.model("User",usermodel);
