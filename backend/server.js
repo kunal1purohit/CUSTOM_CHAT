@@ -1,22 +1,22 @@
 import { chats } from "./data.js";
 import express from "express";
 import { configDotenv } from "dotenv";
+import { connectdb } from "./Config/db.js";
+import colors from 'colors';
+import { router as userroutes } from "./Routes/userroutes.js";
+
 const app = express()
 configDotenv();
-const port= process.env.PORT || 5000 ;
+connectdb();
+app.use(express.json());
+
+const port= process.env.PORT || 5001 ;
 
 
 app.get('/',(req,res)=>{
     res.send("API is running");
 })
 
-app.get('/api/chat',(req,res)=>{
-    res.send(chats);
-})
+app.use('/api/user',userroutes);
 
-app.get('/api/chat/:id',(req,res)=>{
-    const singlechat = chats.find((chat)=>(chat._id === req.params.id));
-    res.send(singlechat);
-})
-
-app.listen(port,console.log("server started on ", port));
+app.listen(port,console.log("server started on ", port.yellow.bold));
