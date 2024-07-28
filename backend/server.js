@@ -5,6 +5,7 @@ import { connectdb } from "./Config/db.js";
 import colors from 'colors';
 import { router as userroutes } from "./Routes/userroutes.js";
 import { notFound,errorHandler } from "./middle/errormiddle.js";
+import { router as chatroutes } from "./Routes/chatroutes.js";
 
 const app = express()
 configDotenv();
@@ -19,6 +20,7 @@ app.get('/',(req,res)=>{
 })
 
 app.use('/api/user',userroutes);
+app.use('/api/chat',chatroutes);
 
 app.use(notFound)
 app.use(errorHandler)

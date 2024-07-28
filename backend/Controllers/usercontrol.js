@@ -66,6 +66,6 @@ export const allusers = expressAsyncHandler(async(req,res)=>{
 
    console.log(keyword);
 
-   const users = await User.find(keyword)
+   const users = await User.find(keyword).find({_id:{$ne:req.user._id}});
    res.send(users);
 });
