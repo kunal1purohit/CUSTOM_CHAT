@@ -12,7 +12,7 @@ function Home() {
       const user = JSON.parse(localStorage.getItem('userInfo'))
       setuser(user)
       if(!user){
-          history.push("/chats")
+          history.push("/")
       }
   },[history])
 

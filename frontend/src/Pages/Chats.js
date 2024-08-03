@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Chatstate } from '../Context/chatprovider'
+import { Chatstate } from '../Context/chatprovider.js'
 import { Box } from '@chakra-ui/react';
-import Sidedrawer from '../Component/misc/Sidedrawer';
+import Sidedrawer from '../Component/misc/sidedrawer.js';
 import Mychats from '../Component/misc/Mychats';
 import Chatbox from '../Component/misc/Chatbox';
 
 function Chats() {
   const {user} = Chatstate();
+  console.log(user);
 
   return (
     <div style={{width:"100%"}}>
