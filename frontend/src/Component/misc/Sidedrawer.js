@@ -17,6 +17,7 @@ import {
 import axios from 'axios';
 import ChatLoading from './ChatLoading';
 import UserListItem from '../UserAvatar/UserListItem.js';
+import  {Spinner}  from '@chakra-ui/spinner';
 
 function Sidedrawer() {
 
@@ -25,7 +26,7 @@ function Sidedrawer() {
   const [loading,setloading] = useState(false);
   const [loadingchat,setloadingchat] = useState();
 
-  const {user,setselectedchat} =Chatstate();
+  const {user,setselectedchat,chats,setchats} =Chatstate();
   const history=useHistory();
 
   const logouthandler = ()=>{
@@ -84,6 +85,7 @@ const toast=useToast();
         },
       };
       const {data} =  await axios.post("/api/chat" , {userId} , config );
+      if(!chats.find((c)=> c._id===data._id)) setchats([data,...chats])
       setselectedchat(data);
       setloadingchat(false);
       onClose();
@@ -175,6 +177,7 @@ const toast=useToast();
               />
             ))
           )}
+          {loadingchat && <Spinner ml="auto" d="flex"/>}
           
         </DrawerBody>
         </DrawerContent>
